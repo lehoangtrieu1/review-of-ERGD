@@ -167,8 +167,8 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 26px;
-      align-content: start;
-      pointer-events: none;
+      align-content: center;
+      pointer-events: center;
     }
 
     .slide.active {
@@ -186,6 +186,8 @@
       box-shadow: 0 18px 40px rgba(0,0,0,0.22);
       backdrop-filter: blur(8px);
       overflow: hidden;
+      width: 100%;
+      max-width: 850px;
     }
 
     .card::before {
