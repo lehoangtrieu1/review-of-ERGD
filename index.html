@@ -44,6 +44,12 @@
       font-size: 18px;
       line-height: 1.5;
     }
+    .error {
+      color: #ff8080;
+      font-size: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
@@ -53,36 +59,50 @@
   </div>
 
   <script>
-    async function init() {
-      const map = new google.maps.Map(document.createElement("div"));
-      const service = new google.maps.places.PlacesService(map);
+    function init() {
+      const container = document.getElementById("reviews");
 
-      const placeId = "ChIJ0YJiiW-rMioRjoA8YxBVKGk";
+      try {
+        const dummyMapDiv = document.createElement("div");
+        const map = new google.maps.Map(dummyMapDiv);
+        const service = new google.maps.places.PlacesService(map);
 
-      service.getDetails(
-        {
-          placeId: placeId,
-          fields: ["name", "rating", "reviews"]
-        },
-        (place, status) => {
-          const container = document.getElementById("reviews");
+        const placeId = "ChIJ0YJiiW-rMioRjoA8YxBVKGk";
 
-          if (status !== google.maps.places.PlacesServiceStatus.OK || !place.reviews) {
-            container.innerHTML = "<div>No reviews found.</div>";
-            return;
+        service.getDetails(
+          {
+            placeId: placeId,
+            fields: ["name", "rating", "reviews"]
+          },
+          (place, status) => {
+            console.log("Status:", status);
+            console.log("Place:", place);
+
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+              container.innerHTML = `<div class="error">Google Places error: ${status}</div>`;
+              return;
+            }
+
+            if (!place || !place.reviews || place.reviews.length === 0) {
+              container.innerHTML = `<div class="error">No reviews found for this place.</div>`;
+              return;
+            }
+
+            const topReviews = place.reviews.slice(0, 4);
+
+            container.innerHTML = topReviews.map(r => `
+              <div class="card">
+                <div class="author">${r.author_name || "Anonymous"}</div>
+                <div class="rating">⭐ ${r.rating || "-"}/5</div>
+                <div class="text">${r.text || "No review text available."}</div>
+              </div>
+            `).join("");
           }
-
-          const topReviews = place.reviews.slice(0, 4);
-
-          container.innerHTML = topReviews.map(r => `
-            <div class="card">
-              <div class="author">${r.author_name}</div>
-              <div class="rating">⭐ ${r.rating}/5</div>
-              <div class="text">${r.text || ""}</div>
-            </div>
-          `).join("");
-        }
-      );
+        );
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `<div class="error">Script error: ${err.message}</div>`;
+      }
     }
   </script>
 
