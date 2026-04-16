@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Google Reviews Screen</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    .wrap {
+      padding: 30px;
+    }
+    .title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .reviews {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .card {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 20px;
+      min-height: 180px;
+    }
+    .author {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .rating {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .text {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">Customer Reviews</div>
+    <div id="reviews" class="reviews"></div>
+  </div>
 
+  <script>
+    async function init() {
+      const map = new google.maps.Map(document.createElement("div"));
+      const service = new google.maps.places.PlacesService(map);
+
+      const placeId = "YOUR_PLACE_ID_HERE";
+
+      service.getDetails(
+        {
+          placeId: placeId,
+          fields: ["name", "rating", "reviews"]
+        },
+        (place, status) => {
+          const container = document.getElementById("reviews");
+
+          if (status !== google.maps.places.PlacesServiceStatus.OK || !place.reviews) {
+            container.innerHTML = "<div>No reviews found.</div>";
+            return;
+          }
+
+          const topReviews = place.reviews.slice(0, 4);
+
+          container.innerHTML = topReviews.map(r => `
+            <div class="card">
+              <div class="author">${r.author_name}</div>
+              <div class="rating">⭐ ${r.rating}/5</div>
+              <div class="text">${r.text || ""}</div>
+            </div>
+          `).join("");
+        }
+      );
+    }
+  </script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=init"
+    async
+    defer>
+  </script>
+</body>
+</html>
