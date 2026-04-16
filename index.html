@@ -1,115 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Google Reviews Screen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Reviews</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
       background: #000;
       color: #fff;
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
-    .wrap {
-      padding: 30px;
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .title {
-      font-size: 36px;
-      margin-bottom: 20px;
+
+    .screen {
+      width: 1080px;
+      height: 1920px;
+      background: #000;
+      padding: 60px 50px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
       text-align: center;
+      font-size: 64px;
+      margin: 0 0 50px;
+      color: #fff;
     }
-    .reviews {
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 120px);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      align-content: start;
     }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     .card {
       background: #111;
-      border: 1px solid #333;
-      border-radius: 16px;
-      padding: 20px;
-      min-height: 180px;
+      border: 1px solid #2a2a2a;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.04);
     }
-    .author {
-      font-size: 22px;
+
+    .name {
+      font-size: 34px;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
-    .rating {
-      font-size: 20px;
-      margin-bottom: 10px;
+
+    .stars {
+      font-size: 28px;
+      color: #ffd54f;
+      margin-bottom: 18px;
     }
+
     .text {
-      font-size: 18px;
+      font-size: 30px;
       line-height: 1.5;
+      color: #f1f1f1;
     }
-    .error {
-      color: #ff8080;
-      font-size: 20px;
+
+    .footer {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      width: 100%;
       text-align: center;
-      margin-top: 40px;
+      font-size: 22px;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="title">Customer Reviews</div>
-    <div id="reviews" class="reviews"></div>
+  <div class="screen">
+    <h1>Customer Reviews</h1>
+
+    <div class="slider">
+      <div class="slide active">
+        <div class="card">
+          <div class="name">Petra</div>
+          <div class="stars">★★★★★</div>
+          <div class="text">
+            Eden Roc Garage Doors installed my garage door and I cannot say enough positive things about them.
+            They kept me informed through the whole process and the installer did an excellent job.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="name">James Filing</div>
+          <div class="stars">★★★★★</div>
+          <div class="text">
+            Quick to respond, quick on the job, and very professional.
+            The team called ahead, completed the work quickly, and left everything clean.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="name">Jude McKeown</div>
+          <div class="stars">★★★★★</div>
+          <div class="text">
+            We have been using these guys for years and the service has always been excellent.
+            Friendly, efficient, informative, and highly recommended.
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="card">
+          <div class="name">Raj Parmar</div>
+          <div class="stars">★★★★★</div>
+          <div class="text">
+            Very happy with Eden Roc from start to finish.
+            Great advice, fair pricing, clear communication, and a smooth installation.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="name">Sarah M</div>
+          <div class="stars">★★★★★</div>
+          <div class="text">
+            Fantastic customer service and very easy to deal with.
+            The whole process felt professional and stress-free.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="name">Daniel T</div>
+          <div class="stars">★★★★★</div>
+          <div class="text">
+            Excellent workmanship and very good communication.
+            I would definitely recommend them to anyone needing garage door services.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Updated customer feedback</div>
   </div>
 
   <script>
-    function init() {
-      const container = document.getElementById("reviews");
+    const slides = document.querySelectorAll(".slide");
+    let current = 0;
 
-      try {
-        const dummyMapDiv = document.createElement("div");
-        const map = new google.maps.Map(dummyMapDiv);
-        const service = new google.maps.places.PlacesService(map);
-
-        const placeId = "ChIJ0YJiiW-rMioRjoA8YxBVKGk";
-
-        service.getDetails(
-          {
-            placeId: placeId,
-            fields: ["name", "rating", "reviews"]
-          },
-          (place, status) => {
-            console.log("Status:", status);
-            console.log("Place:", place);
-
-            if (status !== google.maps.places.PlacesServiceStatus.OK) {
-              container.innerHTML = `<div class="error">Google Places error: ${status}</div>`;
-              return;
-            }
-
-            if (!place || !place.reviews || place.reviews.length === 0) {
-              container.innerHTML = `<div class="error">No reviews found for this place.</div>`;
-              return;
-            }
-
-            const topReviews = place.reviews.slice(0, 4);
-
-            container.innerHTML = topReviews.map(r => `
-              <div class="card">
-                <div class="author">${r.author_name || "Anonymous"}</div>
-                <div class="rating">⭐ ${r.rating || "-"}/5</div>
-                <div class="text">${r.text || "No review text available."}</div>
-              </div>
-            `).join("");
-          }
-        );
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = `<div class="error">Script error: ${err.message}</div>`;
-      }
-    }
-  </script>
-
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArZASDn46fyG_0a13Ifl8keaaPerteaeo&libraries=places&callback=init"
-    async
-    defer>
+    setInterval(() => {
+      slides[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+    }, 8000);
   </script>
 </body>
 </html>
