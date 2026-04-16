@@ -1,0 +1,258 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background: #07111f;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.screen {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 70px 55px 60px;
+  background:
+    radial-gradient(circle at top left, rgba(51, 122, 255, 0.28), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(0, 194, 255, 0.20), transparent 30%),
+    linear-gradient(180deg, #0a1730 0%, #0d2245 45%, #091525 100%);
+}
+
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,0.02) 0px,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 90px
+    );
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.brand {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #dce9ff;
+  margin-bottom: 12px;
+}
+
+.headline {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.08;
+  margin: 0 0 16px;
+  color: #ffffff;
+}
+
+.subheadline {
+  font-size: 28px;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.82);
+  margin: 0;
+}
+
+.middle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 42px;
+}
+
+.rating-summary {
+  width: 100%;
+  padding: 30px 34px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.20);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.rating-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rating-label {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.7);
+}
+
+.rating-value {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.score {
+  font-size: 78px;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.stars-large {
+  font-size: 40px;
+  color: #ffd85a;
+  letter-spacing: 4px;
+}
+
+.rating-note {
+  font-size: 24px;
+  color: rgba(255,255,255,0.78);
+  text-align: right;
+  max-width: 310px;
+  line-height: 1.4;
+}
+
+.slider-wrap {
+  position: relative;
+  min-height: 780px;
+  overflow: hidden;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+  align-content: center;
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  padding: 34px 34px 32px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+
+.card::before {
+  content: "“";
+  position: absolute;
+  top: 10px;
+  right: 24px;
+  font-size: 120px;
+  line-height: 1;
+  color: rgba(255,255,255,0.08);
+  font-weight: bold;
+}
+
+.name {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.stars {
+  font-size: 30px;
+  color: #ffd85a;
+  margin-bottom: 18px;
+  letter-spacing: 3px;
+}
+
+.text {
+  font-size: 31px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.92);
+}
+
+.bottom-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-top: 10px;
+}
+
+.dots {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  width: 38px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.footer {
+  text-align: center;
+  font-size: 22px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.4px;
+}
