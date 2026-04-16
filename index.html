@@ -167,7 +167,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 26px;
-      align-content: center;
+      align-content: start;
       pointer-events: center;
     }
 
@@ -177,6 +177,14 @@
       pointer-events: auto;
     }
 
+    .middle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;   
+      gap: 40px;
+}
+    
     .card {
       position: relative;
       padding: 34px 34px 32px;
@@ -197,6 +205,8 @@
       line-height: 1;
       color: rgba(255,255,255,0.08);
       font-weight: bold;
+      width: 100%;
+      max-width: 850px;
     }
 
     .name {
