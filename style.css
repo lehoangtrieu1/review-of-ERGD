@@ -194,7 +194,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  gap: 30px;
 
   pointer-events: none;
 }
