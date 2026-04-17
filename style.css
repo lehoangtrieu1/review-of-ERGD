@@ -160,7 +160,7 @@ body {
 
 .slider-wrap {
   position: relative;
-  height: 820px;
+  height: 930px;
   overflow: hidden;
 }
 
@@ -178,7 +178,7 @@ body {
   transition: opacity 0.8s ease, transform 0.8s ease;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 26px;
+  gap: 20px;
   align-content: center;
   pointer-events: none;
 }
@@ -192,7 +192,7 @@ body {
 .card {
   position: relative;
   width: 100%;
-  padding: 34px 34px 32px;
+  padding: 28px 30px;
   border-radius: 28px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.12);
@@ -226,8 +226,8 @@ body {
 }
 
 .text {
-  font-size: 31px;
-  line-height: 1.5;
+  font-size: 28px;
+  line-height: 1.4;
   color: rgba(255,255,255,0.92);
 }
 
