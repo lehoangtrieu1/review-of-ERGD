@@ -176,8 +176,8 @@ body {
   transition: opacity 0.8s ease, transform 0.8s ease;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  align-content: center;
+  grid-template-rows: repeat(3, 1fr); 
+  gap: 20px;
   pointer-events: none;
 }
 
@@ -190,13 +190,17 @@ body {
 .card {
   position: relative;
   width: 100%;
-  padding: 22px 24px 20px;
+  height: 100%;            
+  padding: 26px 28px;
   border-radius: 24px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 18px 40px rgba(0,0,0,0.22);
   backdrop-filter: blur(8px);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
 }
 
 .card::before {
@@ -224,8 +228,8 @@ body {
 }
 
 .text {
-  font-size: 22px;
-  line-height: 1.35;
+  font-size: 23px;
+  line-height: 1.45;
   color: rgba(255,255,255,0.92);
 }
 
