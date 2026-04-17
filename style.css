@@ -99,8 +99,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 50px;
-  margin-top: 20px;
+  gap: 40px;
+  min-height: 0;
 }
 
 .rating-summary {
@@ -171,8 +171,9 @@ body {
 }
 
 .slider-wrap {
+  flex: 1;              
   position: relative;
-  height: 930px;
+  min-height: 0;
   overflow: hidden;
 }
 
