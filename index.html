@@ -168,7 +168,7 @@
       grid-template-columns: 1fr;
       gap: 26px;
       align-content: start;
-      pointer-events: center;
+      pointer-events: none;
     }
 
     .slide.active {
@@ -177,14 +177,6 @@
       pointer-events: auto;
     }
 
-    .middle {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;   
-      gap: 40px;
-}
-    
     .card {
       position: relative;
       padding: 34px 34px 32px;
@@ -205,8 +197,6 @@
       line-height: 1;
       color: rgba(255,255,255,0.08);
       font-weight: bold;
-      width: 100%;
-      max-width: 850px;
     }
 
     .name {
@@ -265,7 +255,6 @@
       letter-spacing: 0.4px;
     }
   </style>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="screen">
@@ -284,17 +273,6 @@
           <div class="rating-value">
             <div class="score">4.9</div>
             <div class="stars-large">★★★★★</div>
-      <div class="middle">
-        <div class="rating-summary">
-          <div class="rating-left">
-            <div class="rating-label">Average Google Rating</div>
-            <div class="rating-value">
-              <div class="score">4.9</div>
-              <div class="stars-large">★★★★★</div>
-            </div>
-          </div>
-          <div class="rating-note">
-            Real feedback from happy customers across Perth
           </div>
         </div>
         <div class="rating-note">
@@ -311,16 +289,6 @@
               <div class="text">
                 Eden Roc Garage Doors installed my garage door and I cannot say enough positive things about them.
                 They kept me informed through the whole process and the installer did an excellent job.
-        <div class="slider-wrap">
-          <div class="slider">
-            <div class="slide active">
-              <div class="card">
-                <div class="name">Petra</div>
-                <div class="stars">★★★★★</div>
-                <div class="text">
-                  Eden Roc Garage Doors installed my garage door and I cannot say enough positive things about them.
-                  They kept me informed through the whole process and the installer did an excellent job.
-                </div>
               </div>
             </div>
 
@@ -330,13 +298,6 @@
               <div class="text">
                 Quick to respond, quick on the job, and very professional.
                 The team called ahead, completed the work quickly, and left everything clean.
-              <div class="card">
-                <div class="name">James Filing</div>
-                <div class="stars">★★★★★</div>
-                <div class="text">
-                  Quick to respond, quick on the job, and very professional.
-                  The team called ahead, completed the work quickly, and left everything clean.
-                </div>
               </div>
             </div>
 
@@ -346,13 +307,6 @@
               <div class="text">
                 We have been using these guys for years and the service has always been excellent.
                 Friendly, efficient, informative, and highly recommended.
-              <div class="card">
-                <div class="name">Jude McKeown</div>
-                <div class="stars">★★★★★</div>
-                <div class="text">
-                  We have been using these guys for years and the service has always been excellent.
-                  Friendly, efficient, informative, and highly recommended.
-                </div>
               </div>
             </div>
           </div>
@@ -364,14 +318,6 @@
               <div class="text">
                 Very happy with Eden Roc from start to finish.
                 Great advice, fair pricing, clear communication, and a smooth installation.
-            <div class="slide">
-              <div class="card">
-                <div class="name">Raj Parmar</div>
-                <div class="stars">★★★★★</div>
-                <div class="text">
-                  Very happy with Eden Roc from start to finish.
-                  Great advice, fair pricing, clear communication, and a smooth installation.
-                </div>
               </div>
             </div>
 
@@ -381,13 +327,6 @@
               <div class="text">
                 Fantastic customer service and very easy to deal with.
                 The whole process felt professional and stress-free.
-              <div class="card">
-                <div class="name">Sarah M</div>
-                <div class="stars">★★★★★</div>
-                <div class="text">
-                  Fantastic customer service and very easy to deal with.
-                  The whole process felt professional and stress-free.
-                </div>
               </div>
             </div>
 
@@ -397,13 +336,6 @@
               <div class="text">
                 Excellent workmanship and very good communication.
                 I would definitely recommend them to anyone needing garage door services.
-              <div class="card">
-                <div class="name">Daniel T</div>
-                <div class="stars">★★★★★</div>
-                <div class="text">
-                  Excellent workmanship and very good communication.
-                  I would definitely recommend them to anyone needing garage door services.
-                </div>
               </div>
             </div>
           </div>
