@@ -96,6 +96,36 @@
                   </div>
                 </div>
               </div>
+              <div class="slide">
+                <div class="card">
+                  <div class="name">Annabelle Reid</div>
+                  <div class="stars">★★★★★</div>
+                  <div class="text">
+                    Received great service installing my new panel lift garage door. I really appreciated the communication.
+                    I highly recommend Eden Roc Garage Doors.
+                  </div>
+                </div>
+              
+                <div class="card">
+                  <div class="name">Noel Murphy</div>
+                  <div class="stars">★★★★★</div>
+                  <div class="text">
+                    We had the spring break on our garage door and Eden Roc had it fixed within 48 hours.
+                    Easy to deal with and friendly service people who arrived on time. The job was done within the quoted time.
+                    Will use again.
+                  </div>
+                </div>
+              
+                <div class="card">
+                  <div class="name">Ashley Frew</div>
+                  <div class="stars">★★★★★</div>
+                  <div class="text">
+                    Highly recommend this group! All staff were highly professional, reliable and efficient.
+                    Special thanks to Mark for his knowledge and saving me money with a smart solution.
+                    Couldn't be happier.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -103,6 +133,7 @@
         <div class="bottom-area">
           <div class="dots">
             <div class="dot active"></div>
+            <div class="dot"></div>
             <div class="dot"></div>
           </div>
           <div class="footer">Updated customer feedback</div>
@@ -112,20 +143,19 @@
   </div>
 
   <script>
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".dot");
-    let current = 0;
+   const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
+  let current = 0;
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-      });
-
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
-      });
-    }
-
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+  
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
+}
     setInterval(() => {
       current = (current + 1) % slides.length;
       showSlide(current);
